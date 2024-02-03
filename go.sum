@@ -1,0 +1,4 @@
+github.com/Shopify/go-lua v0.0.0-20221004153744-91867de107cf h1:VSUCKpFV0AfYGslgQSRdBI9HCVp1TCXJmScWD0VXL5g=
+github.com/Shopify/go-lua v0.0.0-20221004153744-91867de107cf/go.mod h1:UCCi6u6YA8oXfJ15vEMiMGIaWWfLiOacinBPHxLXtEU=
+github.com/d5/tengo/v2 v2.16.1 h1:/N6dqiGu9toqANInZEOQMM8I06icdZnmb+81DG/lZdw=
+github.com/d5/tengo/v2 v2.16.1/go.mod h1:XRGjEs5I9jYIKTxly6HCF8oiiilk5E/RYXOZ5b0DZC8=
