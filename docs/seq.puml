@@ -3,13 +3,13 @@
 
 autonumber
 actor Usuario as user
-control MicroService as microservice
+control "Motor de Calculo" as microservice
 control IAM as iam
 database Git as git
 
 user -> microservice : Aciona api de cálculo
 microservice -> iam : Verifica credenciais para cálculo
-iam -> microservice: Autoriza cálculo
+iam --> microservice: Autoriza cálculo
 microservice -> git : Busca versão atualizada da fórmula (git pull)
 git --> microservice: Retorna fórmula atualizada
 microservice -> microservice: Realiza cálculo com input

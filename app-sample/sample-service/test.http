@@ -1,0 +1,19 @@
+POST http://localhost:8080/formula01.js
+Content-Type: application/json
+
+{
+  "from": "end xpto",
+  "to": "belerizonte",
+  "items": [
+    {
+      "sku": "asd",
+      "qntd": 2,
+      "peso": 1.12
+    },
+    {
+      "sku": "zxcv",
+      "qntd": 5,
+      "peso": 0.8
+    }
+  ]
+}
