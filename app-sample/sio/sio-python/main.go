@@ -20,6 +20,21 @@ func run(ctx context.Context) error {
 		return err
 	}
 	log.Printf("Running at: %s", wd)
+
+	err = os.WriteFile("main.py", []byte(`import sys, json;
+data = json.load(sys.stdin)
+
+data["field3"]="nono"
+
+print(json.dumps(data))
+
+sys.stdout.write("{}")`), 0o600)
+	if err != nil {
+		return err
+	}
+
+	defer os.Remove("main.py")
+
 	cmd := exec.Command("python3", "main.py")
 
 	in, err := cmd.StdinPipe()

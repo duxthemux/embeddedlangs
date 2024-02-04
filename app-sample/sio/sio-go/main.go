@@ -20,7 +20,33 @@ func run(ctx context.Context) error {
 		return err
 	}
 	log.Printf("Running at: %s", wd)
-	cmd := exec.Command("node", "main.js")
+
+	err = os.WriteFile("run.go", []byte(`package main
+
+import (
+	"encoding/json"
+	"os"
+)
+
+func main() {
+	m := map[string]any{}
+	if err := json.NewDecoder(os.Stdin).Decode(&m); err != nil {
+		panic(err)
+	}
+	m["fromGo"] = "Came from Go!!!"
+	if err := json.NewEncoder(os.Stdout).Encode(m); err != nil {
+		panic(err)
+	}
+}`),
+
+		0o600)
+	if err != nil {
+		return err
+	}
+
+	defer os.Remove("run.go")
+
+	cmd := exec.Command("go", "run", "run.go")
 
 	in, err := cmd.StdinPipe()
 	if err != nil {
@@ -32,9 +58,14 @@ func run(ctx context.Context) error {
 		return err
 	}
 
-	go func() {
-		io.Copy(os.Stdout, out)
-	}()
+	serr, err := cmd.StderrPipe()
+	if err != nil {
+		return err
+	}
+
+	go io.Copy(os.Stderr, serr)
+
+	go io.Copy(os.Stdout, out)
 
 	err = cmd.Start()
 	if err != nil {
