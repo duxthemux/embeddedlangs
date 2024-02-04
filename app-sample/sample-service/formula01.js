@@ -5,6 +5,8 @@ let ret = {
     history: []
 }
 
+ret.history.push("Starting calc V1")
+
 for (let i of $IN.items) {
     ret.history.push(`Calculating for item ${i.sku}`)
     let itemCost = i.qntd * getPrecoBySku(i.sku)
