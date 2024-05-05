@@ -23,7 +23,7 @@ Some(pin);
 pin;
 `)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	num := v.Export()
 

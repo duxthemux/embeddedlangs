@@ -1,0 +1,13 @@
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+  "src": "formula01.star",
+  "id_cliente": "001",
+  "endereco_entrega": "rua x, no 12",
+  "estado": "MG",
+  "produtos": {
+    "sku001": 1.1,
+    "sku002": 2.4
+  }
+}
